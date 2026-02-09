@@ -1,0 +1,1143 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CV - Jiří Mašek</title>
+    <style>
+        :root {
+            --color-primary: #f59e0b;
+            --color-primary-dark: #d97706;
+            --color-accent: #fbbf24;
+            --color-text: #1f2937;
+            --color-text-light: #6b7280;
+            --color-bg: #ffffff;
+            --color-bg-light: #f3f4f6;
+            --color-bg-dark: #374151;
+            --color-border: #e5e7eb;
+            --color-success: #f59e0b;
+            --color-anthracite: #2d3748;
+            --color-anthracite-dark: #1a202c;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Helvetica', 'Arial', sans-serif;
+            line-height: 1.6;
+            color: var(--color-text);
+            background-color: var(--color-bg-light);
+            padding-top: 70px;
+        }
+
+        .nav-menu {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background: var(--color-anthracite-dark);
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+            z-index: 1000;
+            height: 70px;
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1rem;
+            height: 100%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .nav-logo {
+            color: var(--color-primary);
+            font-size: 1.5rem;
+            font-weight: 700;
+        }
+
+        .nav-toggle {
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 0.5rem;
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+            z-index: 1001;
+        }
+
+        .nav-toggle span {
+            display: block;
+            width: 28px;
+            height: 3px;
+            background: var(--color-primary);
+            border-radius: 2px;
+            transition: all 0.3s ease;
+        }
+
+        .nav-toggle.active span:nth-child(1) {
+            transform: rotate(45deg) translate(8px, 8px);
+        }
+
+        .nav-toggle.active span:nth-child(2) {
+            opacity: 0;
+        }
+
+        .nav-toggle.active span:nth-child(3) {
+            transform: rotate(-45deg) translate(7px, -7px);
+        }
+
+        .nav-links {
+            position: fixed;
+            top: 70px;
+            right: -300px;
+            width: 280px;
+            height: calc(100vh - 70px);
+            background: var(--color-anthracite);
+            padding: 2rem 0;
+            transition: right 0.3s ease;
+            box-shadow: -2px 0 10px rgba(0, 0, 0, 0.2);
+            overflow-y: auto;
+        }
+
+        .nav-links.active {
+            right: 0;
+        }
+
+        .nav-links a {
+            display: block;
+            color: white;
+            text-decoration: none;
+            padding: 1rem 2rem;
+            transition: all 0.3s ease;
+            border-left: 4px solid transparent;
+            font-weight: 400;
+        }
+
+        .nav-links a.nav-section-title {
+            font-weight: 700;
+            font-size: 1.05rem;
+            color: var(--color-primary);
+            padding-top: 1.5rem;
+            padding-bottom: 0.5rem;
+        }
+
+        .nav-links a.nav-section-title:first-child {
+            padding-top: 1rem;
+        }
+
+        .nav-links a:hover {
+            background: var(--color-anthracite-dark);
+            border-left-color: var(--color-primary);
+            color: var(--color-primary);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem 1rem;
+        }
+
+        header {
+            background: linear-gradient(135deg, var(--color-anthracite-dark) 0%, var(--color-anthracite) 100%);
+            color: white;
+            padding: 3rem 0;
+            margin-bottom: 2rem;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+        }
+
+        .header-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1rem;
+            display: flex;
+            align-items: center;
+            gap: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .profile-photo {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 4px solid white;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+        }
+
+        .header-text {
+            flex: 1;
+            min-width: 300px;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+            font-weight: 700;
+        }
+
+        .subtitle {
+            font-size: 1.25rem;
+            opacity: 0.95;
+            margin-bottom: 1rem;
+        }
+
+        .contact-info {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1.5rem;
+            font-size: 0.95rem;
+            opacity: 0.9;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .contact-item svg {
+            width: 18px;
+            height: 18px;
+        }
+
+        .section {
+            background: white;
+            padding: 2rem;
+            margin-bottom: 1.5rem;
+            border-radius: 12px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+        }
+
+        h2 {
+            font-size: 1.75rem;
+            margin-bottom: 1.5rem;
+            color: var(--color-primary);
+            border-bottom: 3px solid var(--color-primary);
+            padding-bottom: 0.5rem;
+        }
+
+        h3 {
+            font-size: 1.25rem;
+            margin-bottom: 0.5rem;
+            color: var(--color-text);
+        }
+
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+            margin-top: 1.5rem;
+        }
+
+        .skill-category {
+            background: var(--color-bg-light);
+            padding: 1.5rem;
+            border-radius: 8px;
+            border-left: 4px solid var(--color-primary);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .skill-category:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 8px 16px rgba(245, 158, 11, 0.2);
+        }
+
+        .skill-category h3 {
+            color: var(--color-primary);
+            font-size: 1.1rem;
+            margin-bottom: 1rem;
+        }
+
+        .skill-list {
+            list-style: none;
+        }
+
+        .skill-list li {
+            padding: 0.5rem 0;
+            border-bottom: 1px solid var(--color-border);
+            font-size: 0.95rem;
+        }
+
+        .skill-list li:last-child {
+            border-bottom: none;
+        }
+
+        .experience-item {
+            margin-bottom: 2rem;
+            padding-bottom: 2rem;
+            border-bottom: 1px solid var(--color-border);
+        }
+
+        .experience-item:last-child {
+            border-bottom: none;
+        }
+
+        .experience-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 0.75rem;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+
+        .company {
+            font-weight: 600;
+            color: var(--color-primary);
+            font-size: 1.1rem;
+        }
+
+        .period {
+            color: var(--color-text-light);
+            font-size: 0.9rem;
+            font-weight: 500;
+        }
+
+        .position {
+            font-style: italic;
+            color: var(--color-text-light);
+            margin-bottom: 0.75rem;
+        }
+
+        .responsibilities {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .responsibilities li {
+            padding: 0.4rem 0 0.4rem 1.5rem;
+            position: relative;
+            font-size: 0.95rem;
+        }
+
+        .responsibilities li:before {
+            content: "▹";
+            position: absolute;
+            left: 0;
+            color: var(--color-primary);
+            font-weight: bold;
+        }
+
+        .education-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 1.5rem;
+            padding: 1rem;
+            background: var(--color-bg-light);
+            border-radius: 8px;
+            border-left: 4px solid var(--color-primary);
+        }
+
+        .education-content {
+            flex: 1;
+        }
+
+        .education-years {
+            color: var(--color-text-light);
+            font-weight: 500;
+            font-size: 0.9rem;
+        }
+
+        .key-skills {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.75rem;
+            margin-top: 1rem;
+        }
+
+        .skill-tag {
+            background: var(--color-primary);
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: 500;
+        }
+
+        .projects-grid {
+            display: grid;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .project-item {
+            background: var(--color-bg-light);
+            padding: 1rem;
+            border-radius: 8px;
+            border-left: 4px solid var(--color-primary);
+        }
+
+        .project-item strong {
+            color: var(--color-primary);
+        }
+
+        footer {
+            text-align: center;
+            padding: 2rem;
+            color: var(--color-text-light);
+            font-size: 0.9rem;
+            background: var(--color-anthracite-dark);
+            color: white;
+            margin-top: 2rem;
+        }
+
+        footer a {
+            color: var(--color-primary);
+            transition: color 0.3s ease;
+        }
+
+        footer a:hover {
+            color: var(--color-accent);
+        }
+
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2rem;
+            }
+
+            .header-content {
+                justify-content: center;
+                text-align: center;
+            }
+
+            .profile-photo {
+                width: 120px;
+                height: 120px;
+            }
+
+            .contact-info {
+                justify-content: center;
+            }
+
+            .section {
+                padding: 1.5rem;
+            }
+
+            .skills-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .experience-header {
+                flex-direction: column;
+            }
+
+            .education-item {
+                flex-direction: column;
+                gap: 0.5rem;
+            }
+        }
+
+        @media print {
+            body {
+                background: white;
+            }
+
+            .section {
+                box-shadow: none;
+                page-break-inside: avoid;
+            }
+
+            header {
+                background: var(--color-primary);
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="header-content">
+            <img src="https://agi-prod-file-upload-public-main-use1.s3.amazonaws.com/c97dd51c-e8b4-4caf-868d-ec5fa9b348dd" alt="Jiří Mašek" class="profile-photo">
+            <div class="header-text">
+                <h1>Jiří Mašek</h1>
+                <div class="subtitle">Stavební mistr & Web Developer & IT Specialista</div>
+                <div class="contact-info">
+                    <div class="contact-item">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
+                        </svg>
+                        +420 730 454 139
+                    </div>
+                    <div class="contact-item">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                        </svg>
+                        jirimasek.post@gmail.com
+                    </div>
+                    <div class="contact-item">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+                        </svg>
+                        Lázně Bohdaneč
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <div class="container">
+        <section class="section">
+            <h2>Klíčové dovednosti</h2>
+            <div class="key-skills">
+                <span class="skill-tag">Obchodní strategie</span>
+                <span class="skill-tag">Vedení týmu</span>
+                <span class="skill-tag">Komunikační dovednosti</span>
+                <span class="skill-tag">Kompletní rekonstrukce</span>
+                <span class="skill-tag">Web Development</span>
+                <span class="skill-tag">Python & C++</span>
+                <span class="skill-tag">Pentesting</span>
+                <span class="skill-tag">Responzivní design</span>
+            </div>
+        </section>
+
+        <section class="section">
+            <h2>O mně</h2>
+            <p style="line-height: 1.8; font-size: 1.05rem;">
+                Jsem multidisciplinární specialista s bohatými zkušenostmi ve stavebnictví i IT. Jako OSVČ jsem vedl týmy 5-12 řemeslníků na kompletních rekonstrukcích po celé ČR. Zároveň se věnuji vývoji webových aplikací, pentestingu a modern technologiím. Kombinuji praktické zkušenosti s technickým know-how a zaměřuji se na efektivní realizaci projektů s důrazem na kvalitu a inovace.
+            </p>
+        </section>
+
+        <section class="section">
+            <h2>Technické dovednosti</h2>
+            <div class="skills-grid">
+                <div class="skill-category">
+                    <h3>Programování & Web</h3>
+                    <ul class="skill-list">
+                        <li>HTML5, CSS3, JavaScript</li>
+                        <li>PHP, jQuery, AJAX</li>
+                        <li>Python, C++</li>
+                        <li>Responzivní webdesign</li>
+                        <li>SEO optimalizace</li>
+                        <li>iOS & Android vývoj</li>
+                    </ul>
+                </div>
+                <div class="skill-category">
+                    <h3>Systémy & Nástroje</h3>
+                    <ul class="skill-list">
+                        <li>Linux (Debian, Ubuntu)</li>
+                        <li>Windows Server</li>
+                        <li>Microsoft Office</li>
+                        <li>Adobe Creative Suite</li>
+                        <li>IOT devices</li>
+                        <li>Hardware diagnostika</li>
+                    </ul>
+                </div>
+                <div class="skill-category">
+                    <h3>Bezpečnost & Testing</h3>
+                    <ul class="skill-list">
+                        <li>Pentesting</li>
+                        <li>Etický hacking</li>
+                        <li>Hardware testing</li>
+                        <li>Software testing</li>
+                        <li>QA procesy</li>
+                        <li>Vývoj testovacího UI</li>
+                    </ul>
+                </div>
+                <div class="skill-category">
+                    <h3>Stavebnictví</h3>
+                    <ul class="skill-list">
+                        <li>SDK konstrukce</li>
+                        <li>Obklady a dlažby</li>
+                        <li>Rozvody elektro</li>
+                        <li>Rozvody vody</li>
+                        <li>Rozpočty a etapové listy</li>
+                        <li>Dotační fondy</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <section class="section">
+            <h2>Pracovní zkušenosti</h2>
+            
+            <div class="experience-item">
+                <div class="experience-header">
+                    <div>
+                        <div class="company">OSVČ - Kompletní rekonstrukce</div>
+                        <div class="position">Stavební mistr / Vedoucí týmu</div>
+                    </div>
+                    <div class="period">2017 - 2026</div>
+                </div>
+                <ul class="responsibilities">
+                    <li>Vedení týmu 5-12 řemeslníků na kompletních rekonstrukcích bytů a domů po celé ČR</li>
+                    <li>SDK konstrukce, obklady, dlažby, rozvody elektro a vody</li>
+                    <li>Čerpání a vyřízení žádostí o dotační fondy</li>
+                    <li>Realizace rekonstrukcí na klíč</li>
+                    <li>Tvorba položkových rozpočtů a etapových listů</li>
+                    <li>Školení a implementace nejmodernějších technologií ve výstavbě</li>
+                </ul>
+            </div>
+
+            <div class="experience-item">
+                <div class="experience-header">
+                    <div>
+                        <div class="company">Synthesia a.s.</div>
+                        <div class="position">Operátor výrobního procesu</div>
+                    </div>
+                    <div class="period">2016 - 2017</div>
+                </div>
+                <ul class="responsibilities">
+                    <li>Kontrola a obsluha výrobního procesu MAGNAC</li>
+                    <li>Pracoviště koncentrované kyseliny dusičné</li>
+                </ul>
+            </div>
+
+            <div class="experience-item">
+                <div class="experience-header">
+                    <div>
+                        <div class="company">Prokop Invest a.s.</div>
+                        <div class="position">Programátor vodního paprsku CNC</div>
+                    </div>
+                    <div class="period">2015</div>
+                </div>
+                <ul class="responsibilities">
+                    <li>Optimalizace výrobního procesu</li>
+                    <li>Chronologické plánování vstupního materiálu</li>
+                    <li>Vytvoření databáze zbytkových kusů</li>
+                    <li>Úzká spolupráce s technology a konstruktéry</li>
+                </ul>
+            </div>
+
+            <div class="experience-item">
+                <div class="experience-header">
+                    <div>
+                        <div class="company">Koukaam a.s.</div>
+                        <div class="position">Hardware & Software Tester</div>
+                    </div>
+                    <div class="period">2013</div>
+                </div>
+                <ul class="responsibilities">
+                    <li>Testování HW a SW pro zařízení IPCorder</li>
+                    <li>Komunikace s klíčovými klienty společnosti</li>
+                    <li>Úpravy firmwaru renomovaných značek kamer</li>
+                </ul>
+            </div>
+
+            <div class="experience-item">
+                <div class="experience-header">
+                    <div>
+                        <div class="company">Foxconn CZ Pardubice</div>
+                        <div class="position">Kontrolor kvality</div>
+                    </div>
+                    <div class="period">2011</div>
+                </div>
+                <ul class="responsibilities">
+                    <li>Testování HP Inkjet technologie</li>
+                    <li>Pravidelný reporting směny</li>
+                    <li>Podílení se na optimalizaci výrobního procesu</li>
+                    <li>Komunikace s technickými a inženýrskými úseky</li>
+                </ul>
+            </div>
+
+            <div class="experience-item">
+                <div class="experience-header">
+                    <div>
+                        <div class="company">Axiom Solutions s.r.o.</div>
+                        <div class="position">Administrátor testovacích stanic</div>
+                    </div>
+                    <div class="period">2006 - 2010</div>
+                </div>
+                <ul class="responsibilities">
+                    <li>Sestavení HW testovacích stanic</li>
+                    <li>Komunikace s klíčovými partnery společnosti</li>
+                    <li>Vývoj testovacího UI</li>
+                    <li>Odpovědnost za obchodní aktivity a dosažení stanovených cílů</li>
+                </ul>
+            </div>
+
+            <div class="experience-item">
+                <div class="experience-header">
+                    <div>
+                        <div class="company">TOP Economy s.r.o.</div>
+                        <div class="position">Webdesigner</div>
+                    </div>
+                    <div class="period">2008 - 2009</div>
+                </div>
+                <ul class="responsibilities">
+                    <li>JAWA Divišov - plnění obsahu webu</li>
+                    <li>PPC - registrace do vyhledávačů</li>
+                    <li>SEO - kontrola sémantické správnosti webu</li>
+                    <li>Validace - ověření bezchybnosti kódu</li>
+                </ul>
+            </div>
+
+            <div class="experience-item">
+                <div class="experience-header">
+                    <div>
+                        <div class="company">Realtime Technologies s.r.o.</div>
+                        <div class="position">Hardware Tester</div>
+                    </div>
+                    <div class="period">2006 - 2007</div>
+                </div>
+                <ul class="responsibilities">
+                    <li>Testování HW prvků a periferií pro PC a notebooky</li>
+                    <li>Podílení se na rozličných projektech testování</li>
+                    <li>Testovací schémata</li>
+                    <li>Pravidelný reporting</li>
+                </ul>
+            </div>
+        </section>
+
+        <section class="section" id="vzdelani">
+            <h2>Vzdělání</h2>
+            <div class="education-item">
+                <div class="education-content">
+                    <h3>EDUCAnet s.r.o. - SOŠ</h3>
+                    <p>Obor: Informační technologie a design</p>
+                </div>
+                <div class="education-years">2006 - 2010</div>
+            </div>
+            <div class="education-item">
+                <div class="education-content">
+                    <h3>ZŠ Npor. Eliáše 344 - Pardubice</h3>
+                    <p>Matematická třída</p>
+                </div>
+                <div class="education-years">1996 - 2005</div>
+            </div>
+        </section>
+
+        <section class="section" id="projekty">
+            <h2>Realizované projekty</h2>
+            <div class="projects-grid">
+                <div class="project-item">
+                    <strong>jmwebdesign</strong> - Tvorba webových prezentací na míru (web pozastaven z důvodu redesignu)
+                </div>
+                <div class="project-item">
+                    <strong>kominictvi-zamastil.ic.cz</strong> - XHTML 1.0, CSS level 2.1
+                </div>
+                <div class="project-item">
+                    <strong>1reklamni.eu</strong> - HTML 5, CSS level 3
+                </div>
+                <div class="project-item">
+                    <strong>vmb-autodoprava.eu</strong> - HTML 5, CSS level 3
+                </div>
+                <div class="project-item">
+                    <strong>ellzed.eu</strong> - HTML 5, CSS level 3
+                </div>
+                <div class="project-item">
+                    <strong>Freelance projekty</strong> - SEO optimalizace a responzivní webdesign pro různé klienty
+                </div>
+            </div>
+        </section>
+
+        <section class="section" id="jazyky">
+            <h2>Jazyky & Zájmy</h2>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem;">
+                <div>
+                    <h3 style="color: var(--color-primary); margin-bottom: 1rem;">Jazyky</h3>
+                    <ul class="skill-list">
+                        <li>Čeština - rodný jazyk</li>
+                        <li>Angličtina - pokročilá, aktivně studující</li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 style="color: var(--color-primary); margin-bottom: 1rem;">Zájmy</h3>
+                    <ul class="skill-list">
+                        <li>Sestavování počítačových sestav</li>
+                        <li>Správa hardwaru</li>
+                        <li>Webdesign a administrace</li>
+                        <li>Vaření</li>
+                        <li>Aggressive inline</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <nav class="nav-menu">
+        <div class="nav-container">
+            <div class="nav-logo">JM</div>
+            <button class="nav-toggle" id="navToggle">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+        <div class="nav-links" id="navLinks">
+            <a href="#uvod" class="nav-section-title">PROFIL</a>
+            <a href="#dovednosti">Klíčové dovednosti</a>
+            <a href="#o-mne">O mně</a>
+            
+            <a href="#technicke" class="nav-section-title">TECHNICKÉ DOVEDNOSTI</a>
+            <a href="#technicke">Programování & Web</a>
+            <a href="#technicke">Systémy & Nástroje</a>
+            <a href="#technicke">Bezpečnost & Testing</a>
+            <a href="#technicke">Stavebnictví</a>
+            
+            <a href="#zkusenosti" class="nav-section-title">PRACOVNÍ ZKUŠENOSTI</a>
+            <a href="#zkusenosti">OSVČ - Kompletní rekonstrukce (2017-2026)</a>
+            <a href="#zkusenosti">Synthesia a.s. (2016-2017)</a>
+            
+            <a href="#vzdelani" class="nav-section-title">VZDĚLÁNÍ</a>
+            <a href="#vzdelani">EDUCAnet s.r.o. - SOŠ</a>
+            
+            <a href="#projekty" class="nav-section-title">PROJEKTY</a>
+            <a href="#projekty">Realizované projekty</a>
+            
+            <a href="#jazyky" class="nav-section-title">OSTATNÍ</a>
+            <a href="#jazyky">Jazyky & Zájmy</a>
+        </div>
+    </nav>
+
+    <header id="uvod">
+        <div class="header-content">
+            <img src="https://agi-prod-file-upload-public-main-use1.s3.amazonaws.com/be70ae8a-a324-4f4b-a953-1aaca7ca2c98" alt="Jiří Mašek" class="profile-photo">
+            <div class="header-text">
+                <h1>Jiří Mašek</h1>
+                <div class="subtitle">Stavební mistr & Web Developer & IT Specialista</div>
+                <div class="contact-info">
+                    <div class="contact-item">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
+                        </svg>
+                        +420 730 454 139
+                    </div>
+                    <div class="contact-item">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                        </svg>
+                        jirimasek.post@gmail.com
+                    </div>
+                    <div class="contact-item">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+                        </svg>
+                        Lázně Bohdaneč
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <div class="container">
+        <section class="section" id="dovednosti">
+            <h2>Klíčové dovednosti</h2>
+            <div class="key-skills">
+                <span class="skill-tag">Obchodní strategie</span>
+                <span class="skill-tag">Vedení týmu</span>
+                <span class="skill-tag">Komunikační dovednosti</span>
+                <span class="skill-tag">Kompletní rekonstrukce</span>
+                <span class="skill-tag">Web Development</span>
+                <span class="skill-tag">Python & C++</span>
+                <span class="skill-tag">Pentesting</span>
+                <span class="skill-tag">Responzivní design</span>
+            </div>
+        </section>
+
+        <section class="section" id="o-mne">
+            <h2>O mně</h2>
+            <p style="line-height: 1.8; font-size: 1.05rem;">
+                Jsem multidisciplinární specialista s bohatými zkušenostmi ve stavebnictví i IT. Jako OSVČ jsem vedl týmy 5-12 řemeslníků na kompletních rekonstrukcích po celé ČR. Zároveň se věnuji vývoji webových aplikací, pentestingu a modern technologiím. Kombinuji praktické zkušenosti s technickým know-how a zaměřuji se na efektivní realizaci projektů s důrazem na kvalitu a inovace.
+            </p>
+        </section>
+
+        <section class="section" id="technicke">
+            <h2>Technické dovednosti</h2>
+            <div class="skills-grid">
+                <div class="skill-category">
+                    <h3>Programování & Web</h3>
+                    <ul class="skill-list">
+                        <li>HTML5, CSS3, JavaScript</li>
+                        <li>PHP, jQuery, AJAX</li>
+                        <li>Python, C++</li>
+                        <li>Responzivní webdesign</li>
+                        <li>SEO optimalizace</li>
+                        <li>iOS & Android vývoj</li>
+                    </ul>
+                </div>
+                <div class="skill-category">
+                    <h3>Systémy & Nástroje</h3>
+                    <ul class="skill-list">
+                        <li>Linux (Debian, Ubuntu)</li>
+                        <li>Windows Server</li>
+                        <li>Microsoft Office</li>
+                        <li>Adobe Creative Suite</li>
+                        <li>IOT devices</li>
+                        <li>Hardware diagnostika</li>
+                    </ul>
+                </div>
+                <div class="skill-category">
+                    <h3>Bezpečnost & Testing</h3>
+                    <ul class="skill-list">
+                        <li>Pentesting</li>
+                        <li>Etický hacking</li>
+                        <li>Hardware testing</li>
+                        <li>Software testing</li>
+                        <li>QA procesy</li>
+                        <li>Vývoj testovacího UI</li>
+                    </ul>
+                </div>
+                <div class="skill-category">
+                    <h3>Stavebnictví</h3>
+                    <ul class="skill-list">
+                        <li>SDK konstrukce</li>
+                        <li>Obklady a dlažby</li>
+                        <li>Rozvody elektro</li>
+                        <li>Rozvody vody</li>
+                        <li>Rozpočty a etapové listy</li>
+                        <li>Dotační fondy</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <section class="section" id="zkusenosti">
+            <h2>Pracovní zkušenosti</h2>
+            
+            <div class="experience-item">
+                <div class="experience-header">
+                    <div>
+                        <div class="company">OSVČ - Kompletní rekonstrukce</div>
+                        <div class="position">Stavební mistr / Vedoucí týmu</div>
+                    </div>
+                    <div class="period">2017 - 2026</div>
+                </div>
+                <ul class="responsibilities">
+                    <li>Vedení týmu 5-12 řemeslníků na kompletních rekonstrukcích bytů a domů po celé ČR</li>
+                    <li>SDK konstrukce, obklady, dlažby, rozvody elektro a vody</li>
+                    <li>Čerpání a vyřízení žádostí o dotační fondy</li>
+                    <li>Realizace rekonstrukcí na klíč</li>
+                    <li>Tvorba položkových rozpočtů a etapových listů</li>
+                    <li>Školení a implementace nejmodernějších technologií ve výstavbě</li>
+                </ul>
+            </div>
+
+            <div class="experience-item">
+                <div class="experience-header">
+                    <div>
+                        <div class="company">Synthesia a.s.</div>
+                        <div class="position">Operátor výrobního procesu</div>
+                    </div>
+                    <div class="period">2016 - 2017</div>
+                </div>
+                <ul class="responsibilities">
+                    <li>Kontrola a obsluha výrobního procesu MAGNAC</li>
+                    <li>Pracoviště koncentrované kyseliny dusičné</li>
+                </ul>
+            </div>
+
+            <div class="experience-item">
+                <div class="experience-header">
+                    <div>
+                        <div class="company">Prokop Invest a.s.</div>
+                        <div class="position">Programátor vodního paprsku CNC</div>
+                    </div>
+                    <div class="period">2015</div>
+                </div>
+                <ul class="responsibilities">
+                    <li>Optimalizace výrobního procesu</li>
+                    <li>Chronologické plánování vstupního materiálu</li>
+                    <li>Vytvoření databáze zbytkových kusů</li>
+                    <li>Úzká spolupráce s technology a konstruktéry</li>
+                </ul>
+            </div>
+
+            <div class="experience-item">
+                <div class="experience-header">
+                    <div>
+                        <div class="company">Koukaam a.s.</div>
+                        <div class="position">Hardware & Software Tester</div>
+                    </div>
+                    <div class="period">2013</div>
+                </div>
+                <ul class="responsibilities">
+                    <li>Testování HW a SW pro zařízení IPCorder</li>
+                    <li>Komunikace s klíčovými klienty společnosti</li>
+                    <li>Úpravy firmwaru renomovaných značek kamer</li>
+                </ul>
+            </div>
+
+            <div class="experience-item">
+                <div class="experience-header">
+                    <div>
+                        <div class="company">Foxconn CZ Pardubice</div>
+                        <div class="position">Kontrolor kvality</div>
+                    </div>
+                    <div class="period">2011</div>
+                </div>
+                <ul class="responsibilities">
+                    <li>Testování HP Inkjet technologie</li>
+                    <li>Pravidelný reporting směny</li>
+                    <li>Podílení se na optimalizaci výrobního procesu</li>
+                    <li>Komunikace s technickými a inženýrskými úseky</li>
+                </ul>
+            </div>
+
+            <div class="experience-item">
+                <div class="experience-header">
+                    <div>
+                        <div class="company">Axiom Solutions s.r.o.</div>
+                        <div class="position">Administrátor testovacích stanic</div>
+                    </div>
+                    <div class="period">2006 - 2010</div>
+                </div>
+                <ul class="responsibilities">
+                    <li>Sestavení HW testovacích stanic</li>
+                    <li>Komunikace s klíčovými partnery společnosti</li>
+                    <li>Vývoj testovacího UI</li>
+                    <li>Odpovědnost za obchodní aktivity a dosažení stanovených cílů</li>
+                </ul>
+            </div>
+
+            <div class="experience-item">
+                <div class="experience-header">
+                    <div>
+                        <div class="company">TOP Economy s.r.o.</div>
+                        <div class="position">Webdesigner</div>
+                    </div>
+                    <div class="period">2008 - 2009</div>
+                </div>
+                <ul class="responsibilities">
+                    <li>JAWA Divišov - plnění obsahu webu</li>
+                    <li>PPC - registrace do vyhledávačů</li>
+                    <li>SEO - kontrola sémantické správnosti webu</li>
+                    <li>Validace - ověření bezchybnosti kódu</li>
+                </ul>
+            </div>
+
+            <div class="experience-item">
+                <div class="experience-header">
+                    <div>
+                        <div class="company">Realtime Technologies s.r.o.</div>
+                        <div class="position">Hardware Tester</div>
+                    </div>
+                    <div class="period">2006 - 2007</div>
+                </div>
+                <ul class="responsibilities">
+                    <li>Testování HW prvků a periferií pro PC a notebooky</li>
+                    <li>Podílení se na rozličných projektech testování</li>
+                    <li>Testovací schémata</li>
+                    <li>Pravidelný reporting</li>
+                </ul>
+            </div>
+        </section>
+
+        <section class="section" id="vzdelani">
+            <h2>Vzdělání</h2>
+            <div class="education-item">
+                <div class="education-content">
+                    <h3>EDUCAnet s.r.o. - SOŠ</h3>
+                    <p>Obor: Informační technologie a design</p>
+                </div>
+                <div class="education-years">2006 - 2010</div>
+            </div>
+            <div class="education-item">
+                <div class="education-content">
+                    <h3>ZŠ Npor. Eliáše 344 - Pardubice</h3>
+                    <p>Matematická třída</p>
+                </div>
+                <div class="education-years">1996 - 2005</div>
+            </div>
+        </section>
+
+        <section class="section" id="projekty">
+            <h2>Realizované projekty</h2>
+            <div class="projects-grid">
+                <div class="project-item">
+                    <strong>jmwebdesign</strong> - Tvorba webových prezentací na míru (web pozastaven z důvodu redesignu)
+                </div>
+                <div class="project-item">
+                    <strong>kominictvi-zamastil.ic.cz</strong> - XHTML 1.0, CSS level 2.1
+                </div>
+                <div class="project-item">
+                    <strong>1reklamni.eu</strong> - HTML 5, CSS level 3
+                </div>
+                <div class="project-item">
+                    <strong>vmb-autodoprava.eu</strong> - HTML 5, CSS level 3
+                </div>
+                <div class="project-item">
+                    <strong>ellzed.eu</strong> - HTML 5, CSS level 3
+                </div>
+                <div class="project-item">
+                    <strong>Freelance projekty</strong> - SEO optimalizace a responzivní webdesign pro různé klienty
+                </div>
+            </div>
+        </section>
+
+        <section class="section" id="jazyky">
+            <h2>Jazyky & Zájmy</h2>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem;">
+                <div>
+                    <h3 style="color: var(--color-primary); margin-bottom: 1rem;">Jazyky</h3>
+                    <ul class="skill-list">
+                        <li>Čeština - rodný jazyk</li>
+                        <li>Angličtina - pokročilá, aktivně studující</li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 style="color: var(--color-primary); margin-bottom: 1rem;">Zájmy</h3>
+                    <ul class="skill-list">
+                        <li>Sestavování počítačových sestav</li>
+                        <li>Správa hardwaru</li>
+                        <li>Webdesign a administrace</li>
+                        <li>Vaření</li>
+                        <li>Aggressive inline</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <footer>
+        <p>&copy; 2026 Jiří Mašek | Curriculum Vitae</p>
+        <p style="margin-top: 0.5rem; font-size: 0.85rem;">Datum narození: 9. 3. 1990 | Stav: Svobodný</p>
+        <div style="margin-top: 1rem; display: flex; justify-content: center; gap: 2rem; flex-wrap: wrap;">
+            <a href="tel:+420730454139" style="color: var(--color-primary); text-decoration: none; font-weight: 500; display: flex; align-items: center; gap: 0.5rem;">
+                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
+                </svg>
+                +420 730 454 139
+            </a>
+            <a href="mailto:jirimasek.post@gmail.com" style="color: var(--color-primary); text-decoration: none; font-weight: 500; display: flex; align-items: center; gap: 0.5rem;">
+                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                </svg>
+                jirimasek.post@gmail.com
+            </a>
+        </div>
+    </footer>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            // Toggle menu
+            $('#navToggle').on('click', function() {
+                $(this).toggleClass('active');
+                $('#navLinks').toggleClass('active');
+            });
+
+            // Close menu when clicking on a link
+            $('#navLinks a').on('click', function(e) {
+                e.preventDefault();
+                const targetId = $(this).attr('href');
+                
+                // Close menu
+                $('#navToggle').removeClass('active');
+                $('#navLinks').removeClass('active');
+                
+                // Smooth scroll to section
+                $('html, body').animate({
+                    scrollTop: $(targetId).offset().top - 80
+                }, 800);
+            });
+
+            // Close menu when clicking outside
+            $(document).on('click', function(e) {
+                if (!$(e.target).closest('.nav-menu').length) {
+                    $('#navToggle').removeClass('active');
+                    $('#navLinks').removeClass('active');
+                }
+            });
+        });
+    </script>
+</body>
+</html>
