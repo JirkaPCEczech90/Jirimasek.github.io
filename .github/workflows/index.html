@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Enhanced CV</title>
+    <link rel="stylesheet" href="styles.css">
+    <script>
+        // Dark mode toggle
+        const toggleDarkMode = () => {
+            const currentMode = localStorage.getItem('dark-mode') === 'true';
+            document.body.classList.toggle('dark-mode', !currentMode);
+            localStorage.setItem('dark-mode', !currentMode);
+        };  
+
+        // Smooth scrolling
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+                if (this.classList.contains('nav-link')) {
+                    // Auto-close mobile menu
+                    document.querySelector('.mobile-menu').classList.remove('open');
+                }
+            });
+        });
+
+        // On page load, apply dark mode if set
+        if (localStorage.getItem('dark-mode') === 'true') {
+            document.body.classList.add('dark-mode');
+        }
+    </script>
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="mobile-menu">
+                <a href="#uvod" class="nav-link">Úvod</a>
+                <a href="#dovednosti" class="nav-link">Dovednosti</a>
+                <a href="#o-mne" class="nav-link">O mně</a>
+                <a href="#technicke" class="nav-link">Technické dovednosti</a>
+                <a href="#zkusenosti" class="nav-link">Zkušenosti</a>
+                <a href="#vzdelani" class="nav-link">Vzdělání</a>
+                <a href="#projekty" class="nav-link">Projekty</a>
+                <a href="#jazyky" class="nav-link">Jazyky</a>
+            </div>
+            <button onclick="toggleDarkMode()">Toggle Dark Mode</button>
+        </nav>
+    </header>
+    <main>
+        <section id="uvod">
+            <h1>Welcome to My Enhanced CV</h1>
+            <p>My name is Jirka PCE Czech. Here’s a brief overview of my professional background.</p>
+        </section>
+        <section id="dovednosti">
+            <h2>Skills</h2>
+            <p>JavaScript, HTML, CSS, React, Node.js, and more!</p>
+        </section>
+        <section id="o-mne">
+            <h2>O mně</h2>
+            <p>Celý život se věnuji technologiím a programování. Mám bohaté zkušenosti s různými projekty v oblasti webového vývoje a vždy hledám příležitosti, jak se zlepšovat a učit novým věcem.</p>
+        </section>
+        <section id="technicke">
+            <h2>Technické dovednosti</h2>
+            <ul>
+                <li>Web Development</li>
+                <li>Database Management</li>
+                <li>API Development</li>
+            </ul>
+        </section>
+        <section id="zkusenosti">
+            <h2>Zkušenosti</h2>
+            <p>Pracoval jsem jako webový vývojář pro různé firmy, kde jsem se podílel na mnoha úspěšných projektech.</p>
+        </section>
+        <section id="vzdelani">
+            <h2>Vzdělání</h2>
+            <p>Magisterský titul z informatiky na Vysoké škole technické.</p>
+        </section>
+        <section id="projekty">
+            <h2>Projekty</h2>
+            <p>Vytvoření řady webových aplikací a systémů pro správu dat.</p>
+        </section>
+        <section id="jazyky">
+            <h2>Jazyky</h2>
+            <p>Čeština, Angličtina, Němčina.</p>
+        </section>
+    </main>
+    <footer>
+        <p>© 2026 Jirka PCE Czech. All rights reserved.</p>
+    </footer>
+    <link rel="stylesheet" href="dark-mode.css" id="dark-mode-styles">
+</body>
+</html>
